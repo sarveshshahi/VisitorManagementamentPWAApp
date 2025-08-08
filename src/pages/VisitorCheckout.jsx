@@ -90,7 +90,7 @@ const VisitorCheckout = () => {
               placeholder="Enter Pass ID or Name"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="h-14 rounded-xl border border-gray-200 bg-white focus:border-gray-200 pl-12 text-base"
+              className="h-12 rounded-xl border border-gray-200 bg-white focus:border-gray-200 pl-12 text-base"
               onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
             />
             <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-blue-600" />
@@ -98,7 +98,7 @@ const VisitorCheckout = () => {
           
           <Button 
             onClick={handleSearch}
-            className="mt-4 w-full h-12 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-bold"
+            className="mt-4 w-full h-11 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg"
           >
             Search Visitor
           </Button>

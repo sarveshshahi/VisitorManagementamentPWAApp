@@ -31,7 +31,7 @@ export const FormInput = ({ label, icon, name, value, onChange, type = 'text', f
       value={value}
       onChange={onChange}
       type={type}
-      className="h-12 w-full text-sm px-3 rounded-lg bg-gray-100 border-none"
+      className="h-9 w-full text-sm px-3 rounded-lg bg-white border-none"
     />
   </div>
 );
@@ -40,7 +40,7 @@ export const FormSelect = ({ label, value, onChange, options }) => (
   <div className="space-y-1">
     <label className="text-sm font-medium text-[#111518]">{label}</label>
     <Select value={value} onValueChange={onChange}>
-      <SelectTrigger className="h-12 w-full text-sm px-3 rounded-lg bg-gray-100 border-none">
+      <SelectTrigger className="h-12 w-full text-sm px-3 rounded-lg bg-white border-none">
         <SelectValue placeholder={`Select ${label.toLowerCase()}`} />
       </SelectTrigger>
       <SelectContent>

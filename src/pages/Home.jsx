@@ -65,10 +65,10 @@ const Home = () => {
       
       {/* Content */}
       <div className="p-6">
-        <h2 className="text-2xl font-bold text-center text-gray-800 mb-2">
+        <h2 className="text-xl font-bold text-center text-gray-800 mb-2">
           Please select an option to proceed
         </h2>
-        <p className="text-gray-500 text-center mb-8">
+        <p className="text-sm text-black-500 text-center mb-6">
           Choose the action you'd like to perform
         </p>
         
@@ -76,7 +76,7 @@ const Home = () => {
           {options.map((option) => (
             <div 
               key={option.id}
-              className={`${option.color} ${option.hoverColor} rounded-xl p-4 transition-all duration-300 transform hover:-translate-y-1 cursor-pointer border border-gray-200 ${
+              className={`${option.color} ${option.hoverColor} rounded-xl p-3 transition-all duration-300 transform hover:-translate-y-1 cursor-pointer border border-gray-200 ${
                 selectedOption === option.id ? 'ring-2 ring-blue-500' : ''
               }`}
               onClick={() => setSelectedOption(option.id)}
@@ -87,7 +87,7 @@ const Home = () => {
                     {option.icon}
                   </div>
                   <div>
-                    <h3 className="font-bold text-gray-800">{option.title}</h3>
+                    <h3 className="font-bold text-sm text-gray-800">{option.title}</h3>
                     <p className="text-sm text-gray-600">{option.description}</p>
                   </div>
                 </div>
@@ -97,14 +97,14 @@ const Home = () => {
           ))}
         </div>
         
-        <div className="mt-8 flex justify-center">
+        <div className="mt-6 flex justify-center">
           <Button 
-            className="w-full max-w-xs h-12 font-bold text-base bg-blue-600"
-            disabled={!selectedOption}
-            onClick={handleContinue} // ✅ Trigger navigation here
-          >
-            Continue
-          </Button>
+  className="w-full p-3 h-12 rounded-xl font-bold text-lg bg-blue-600"
+  disabled={!selectedOption}
+  onClick={handleContinue}
+>
+  Continue
+</Button>
         </div>
       </div>
     </div>

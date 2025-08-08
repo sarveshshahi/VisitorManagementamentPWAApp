@@ -25,7 +25,7 @@ const App = () => {
         <div className="flex size-12 shrink-0 items-center text-[#111418]">
           <Shield className="w-6 h-6" />
         </div>
-        <h2 className="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">
+        <h2 className="text-[#111418] text-xl font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">
           Welcome to Acme Co.
         </h2>
       </header>
@@ -42,19 +42,19 @@ const App = () => {
               }}
             />
           </Card>
-          <p className="text-[#60758a] text-sm mt-2 mb-4">Scan QR</p>
-          <p className="text-[#60758a] text-sm my-2">OR</p>
+          <p className="text-[#000000] text-sm mt-2 mb-4">Scan QR</p>
+          <p className="text-[#60758a] text-sm mb-0">OR</p>
         </div>
 
         {/* Buttons */}
         <div className="flex flex-col gap-4 max-w-xs mx-auto w-full">
-          <Button className="h-12 bg-blue-700 hover:bg-[#0a6bc9] text-base font-bold" onClick={()=>navigate('/home')}>
+          <Button className="h-12 text-lg bg-blue-700 hover:bg-[#0a6bc9] font-bold" onClick={()=>navigate('/home')}>
             
             Check-in
           </Button>
           <Button 
             variant="outline" 
-            className="h-12 bg-[#f0f2f5] hover:bg-[#e4e7eb] text-[#111418] text-base font-bold"
+            className="h-12 bg-[#ffffff2] hover:bg-[#e4e7eb] text-[#111418] text-lg font-bold"
           >
             Have an Invite?
           </Button>
