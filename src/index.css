@@ -159,3 +159,17 @@ body {
     max-width: 100% !important;
   }
 }
+
+@layer components {
+  .input {
+    @apply h-10 w-full px-3 rounded-lg bg-white border-none text-sm;
+  }
+  
+  .input-xs {
+    @apply h-10 w-full px-3 rounded-lg bg-white border-none text-xs;
+  }
+  
+  .input-white {
+    @apply h-10 w-full px-3 rounded-lg bg-white border-none text-sm;
+  }
+}

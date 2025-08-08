@@ -21,19 +21,19 @@ export default function Alreadyregistor() {
       {/* Input Field */}
       <div className="flex max-w-[480px] flex-wrap items-end gap-4 py-3">
         <label className="flex flex-col min-w-40 flex-1">
-          <p className="text-[#111811] text-base font-medium leading-normal pb-2">
+          <p className="text-[#111811] text-base font-medium leading-normal pb-1">
             Email/Mobile
           </p>
           <Input
             placeholder="Enter Eamil or Mobile"
-            className="form-input flex w-full resize-none overflow-hidden rounded-xl text-[#111811] focus:outline-0 focus:ring-0 border border-[#dce5dc] bg-white focus:border-[#dce5dc] h-14 placeholder:text-[#638863] p-[15px] text-base font-normal leading-normal"
+            className="form-input flex w-full resize-none overflow-hidden rounded-xl text-[#111811] focus:outline-0 focus:ring-0 border border-[#dce5dc] bg-white focus:border-[#dce5dc] h-10 placeholder:text-[#638863] p-[15px] text-base font-normal leading-normal"
           />
         </label>
       </div>
 
       {/* Centered Button */}
       <div className="flex justify-center py-3">
-        <button className="w-26 h-12 bg-blue-600 text-white rounded-lg font-bold text-sm" onClick={()=>navigater('/visitorRegistrationSummary')}>
+        <button className="w-24 h-10 bg-blue-600 text-white rounded-lg font-bold text-sm" onClick={()=>navigater('/visitorRegistrationSummary')}>
           Check
         </button>
       </div>

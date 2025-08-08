@@ -68,7 +68,7 @@ const Registration = () => {
     setVisitorPhoto(null);
   };
 
-  const commonInputClass = 'h-12 w-full text-sm px-3 rounded-lg bg-gray-100 border-none';
+  const commonInputClass = 'h-10 w-full text-sm px-3 rounded-lg bg-gray-100 border-none';
 
   return (
     <div className="w-full">
@@ -81,10 +81,9 @@ const Registration = () => {
           <h2 className="text-[#111518] text-base font-bold leading-tight flex-1 text-center">
             Register New Visitor
           </h2>
-          <div className="size-12" />
+          <div className="size-10" />
         </div>
       </div>
-
       {/* Form */}
       <form onSubmit={handleSubmit} className="p-4 pb-24 max-h-[85vh] overflow-y-auto">
         {/* Visitor Information */}
