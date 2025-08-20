@@ -7,11 +7,11 @@ import {
   ChevronRight,
   Shield
 } from 'lucide-react';
-import { useNavigate } from 'react-router-dom'; // ✅ Add this
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const [selectedOption, setSelectedOption] = useState(null);
-  const navigate = useNavigate(); // ✅ Create navigate function
+  const navigate = useNavigate();
 
   const options = [
     {
@@ -19,27 +19,21 @@ const Home = () => {
       title: "Register a New Visitor",
       description: "Create a new visitor profile",
       icon: <UserPlus className="w-5 h-5" />,
-      color: "bg-[#dce8f3]",
-      hoverColor: "hover:bg-[#c9d9ea]",
-      route: "/registration" // ✅ Route for option 1
+      route: "/registration"
     },
     {
       id: 2,
       title: "Already Registered?",
       description: "Check-in with existing profile",
       icon: <UserCheck className="w-5 h-5" />,
-      color: "bg-[#fef3c7]", // Updated color
-      hoverColor: "hover:bg-[#fde68a]", // Updated hover color
-      route: "/alreadyregistor" // ✅ You can add this if needed
+      route: "/alreadyregistor"
     },
     {
       id: 3,
       title: "Check-out",
       description: "Sign out visitors",
       icon: <LogOut className="w-5 h-5" />,
-      color: "bg-[#fee2e2]", // Updated color
-      hoverColor: "hover:bg-[#fecaca]", // Updated hover color
-      route: "/visitorCheckout" // ✅ Optional
+      route: "/visitorCheckout"
     }
   ];
 
@@ -52,18 +46,6 @@ const Home = () => {
 
   return (
     <div className="w-full sm:w-96">
-      {/* Header */}
-      {/* <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 flex items-center gap-3">
-        <div className="bg-white p-3 rounded-xl shadow-sm">
-          <Shield className="w-8 h-8 text-blue-600" />
-        </div>
-        <div>
-          <h1 className="text-lg font-semibold text-gray-800">Acme Corporation</h1>
-          <p className="text-sm text-gray-600">Visitor Management System</p>
-        </div>
-      </div> */}
-      
-      {/* Content */}
       <div className="p-6">
         <h2 className="text-xl font-bold text-center text-gray-800 mb-2">
           Please select an option to proceed
@@ -76,7 +58,7 @@ const Home = () => {
           {options.map((option) => (
             <div 
               key={option.id}
-              className={`${option.color} ${option.hoverColor} rounded-xl p-3 transition-all duration-300 transform hover:-translate-y-1 cursor-pointer border border-gray-200 ${
+              className={`bg-gray-50 hover:bg-gray-100 rounded-xl p-3 transition-all duration-300 transform hover:-translate-y-1 cursor-pointer border border-gray-200 ${
                 selectedOption === option.id ? 'ring-2 ring-blue-500' : ''
               }`}
               onClick={() => setSelectedOption(option.id)}
@@ -99,12 +81,12 @@ const Home = () => {
         
         <div className="mt-6 flex justify-center">
           <Button 
-  className="w-full p-3 h-12 rounded-xl font-bold text-lg bg-blue-600"
-  disabled={!selectedOption}
-  onClick={handleContinue}
->
-  Continue
-</Button>
+            className="w-full p-3 h-12 rounded-xl font-bold text-lg bg-blue-600"
+            disabled={!selectedOption}
+            onClick={handleContinue}
+          >
+            Continue
+          </Button>
         </div>
       </div>
     </div>

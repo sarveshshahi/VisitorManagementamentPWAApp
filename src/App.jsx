@@ -3,6 +3,8 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { useNavigate } from 'react-router-dom';
+import qrImg from './assets/qr.png'; 
+
 import { 
   Shield, 
   Home, 
@@ -13,12 +15,9 @@ import {
 } from 'lucide-react';
 
 const App = () => {
-
- const navigate = useNavigate();
-
+  const navigate = useNavigate();
 
   return (
-    // <div className="flex flex-col min-h-screen bg-white max-w-md mx-auto shadow-sm overflow-hidden">
     <div className="w-full sm:w-96">
       {/* Header */}
       <header className="flex items-center justify-between p-4 pb-2 bg-white">
@@ -34,13 +33,8 @@ const App = () => {
       <main className="flex-1 px-4 py-6">
         {/* QR Code Section */}
         <div className="flex flex-col items-center mb-8">
-          <Card className="w-48 h-48 rounded-xl overflow-hidden">
-            <div 
-              className="w-full h-full bg-center bg-no-repeat bg-cover"
-              style={{ 
-                backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuDfinU6lRWsiK00TPSGRI09ypyJ34XK0WQ0-aZD29AfDVcIV8Oa3LUYRV5hljtoi41kbqhMkEqkhqpp-lrmlOxvmzmkDTPUmseNS8Yh7wKjoM2ZL6j_j-eHWoVZ_GAeSxcP9t-4sD78ncKP64skZUYn4SNMZJZjRxG7g-T5Ixj85Y_vmG7XWWaRNgLPmRRXeK4kBhsXFTmD-3oaXEG6pyZUi2mxO_7U3ARdr8s_tpRrnDFUagbcIXpgcs8CYNkAEEBlwdKh1oMucLTV")' 
-              }}
-            />
+          <Card className="w-48 h-48 rounded-xl overflow-hidden p-0 flex items-center justify-center">
+            <img src={qrImg} alt="QR Code" className="w-full h-full object-contain" />
           </Card>
           <p className="text-[#000000] text-sm mt-2 mb-4">Scan QR</p>
           <p className="text-[#60758a] text-sm mb-0">OR</p>
@@ -49,7 +43,6 @@ const App = () => {
         {/* Buttons */}
         <div className="flex flex-col gap-4 max-w-xs mx-auto w-full">
           <Button className="h-12 text-lg bg-blue-700 hover:bg-[#0a6bc9] font-bold" onClick={()=>navigate('/home')}>
-            
             Check-in
           </Button>
           <Button 
@@ -60,8 +53,6 @@ const App = () => {
           </Button>
         </div>
       </main>
-
-    
     </div>
   );
 };

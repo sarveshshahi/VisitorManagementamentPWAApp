@@ -1,5 +1,5 @@
-// src/components/VisitorRegistration.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import {
   ArrowLeft,
   User,
@@ -13,7 +13,7 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { FormInput, FormSelect, Section, TwoCol, UploadBox } from '../components/fieldscomponents/filedscomponents';
-
+import apiClient from '../services/ApiClient';
 
 const Registration = () => {
   const [formData, setFormData] = useState({
@@ -25,12 +25,52 @@ const Registration = () => {
     whomToMeet: '',
     purpose: '',
     idProofType: '',
-    IdProofNumber:'',
+    IdProofNumber: '',
     vehicleNumber: '',
   });
 
   const [idProofFile, setIdProofFile] = useState(null);
   const [visitorPhoto, setVisitorPhoto] = useState(null);
+  const [persons, setPersons] = useState([]);   // 👈 state for persons dropdown
+  const [purposes, setPurposes] = useState([]); // 👈 state for purpose dropdown
+
+  // Fetch persons list
+  useEffect(() => {
+    const fetchPersons = async () => {
+      try {
+        const res = await apiClient.get('api/person/all');
+        if (res.data && res.data.success) {
+          const options = res.data.data.map((person) => ({
+            label: person.name,
+            value: person._id,
+          }));
+          setPersons(options);
+        }
+      } catch (err) {
+        console.error('Error fetching persons:', err);
+      }
+    };
+    fetchPersons();
+  }, []);
+
+  // Fetch purposes list
+  useEffect(() => {
+    const fetchPurposes = async () => {
+      try {
+        const res = await apiClient.get('api/purpose/all');
+        if (res.data && res.data.success) {
+          const options = res.data.data.map((purpose) => ({
+            label: purpose.name,
+            value: purpose._id,
+          }));
+          setPurposes(options);
+        }
+      } catch (err) {
+        console.error('Error fetching purposes:', err);
+      }
+    };
+    fetchPurposes();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -46,9 +86,31 @@ const Registration = () => {
     if (file) setter(file);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', { ...formData, idProofFile, visitorPhoto });
+
+    try {
+      const formPayload = new FormData();
+      Object.entries(formData).forEach(([key, value]) => {
+        formPayload.append(key, value);
+      });
+      if (idProofFile) formPayload.append('idProofFile', idProofFile);
+      if (visitorPhoto) formPayload.append('visitorPhoto', visitorPhoto);
+
+      await apiClient.post('api/visitor/register-visitor', formPayload, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      alert('Visitor registered!');
+    } catch (error) {
+      if (error.response) {
+        alert(error.response.data.error || 'Error registering visitor');
+      } else {
+        alert('Network error');
+      }
+    }
   };
 
   const handleCancel = () => {
@@ -61,14 +123,12 @@ const Registration = () => {
       whomToMeet: '',
       purpose: '',
       idProofType: '',
-       IdProofNumber:'',
+      IdProofNumber: '',
       vehicleNumber: '',
     });
     setIdProofFile(null);
     setVisitorPhoto(null);
   };
-
-  const commonInputClass = 'h-10 w-full text-sm px-3 rounded-lg bg-gray-100 border-none';
 
   return (
     <div className="w-full">
@@ -84,8 +144,13 @@ const Registration = () => {
           <div className="size-10" />
         </div>
       </div>
+
       {/* Form */}
-      <form onSubmit={handleSubmit} className="p-4 pb-24 max-h-[85vh] overflow-y-auto">
+      <form
+        id="visitor-form"
+        onSubmit={handleSubmit}
+        className="p-4 pb-24 max-h-[85vh] overflow-y-auto"
+      >
         {/* Visitor Information */}
         <Section title="Visitor Information" icon={<User className="w-4 h-4 text-blue-600" />} bg="bg-blue-100">
           <TwoCol>
@@ -104,24 +169,13 @@ const Registration = () => {
               label="Whom to Meet"
               value={formData.whomToMeet}
               onChange={(val) => handleSelectChange('whomToMeet', val)}
-              options={[
-                { label: 'John Smith (Sales)', value: 'john' },
-                { label: 'Sarah Johnson (HR)', value: 'sarah' },
-                { label: 'Mike Williams (IT)', value: 'mike' },
-                { label: 'Lisa Brown (Management)', value: 'lisa' },
-              ]}
+              options={persons} // 👈 dynamic persons
             />
             <FormSelect
               label="Purpose of Visit"
               value={formData.purpose}
               onChange={(val) => handleSelectChange('purpose', val)}
-              options={[
-                { label: 'Business Meeting', value: 'meeting' },
-                { label: 'Job Interview', value: 'interview' },
-                { label: 'Delivery', value: 'delivery' },
-                { label: 'Service/Maintenance', value: 'service' },
-                { label: 'Other', value: 'other' },
-              ]}
+              options={purposes} // 👈 dynamic purposes
             />
           </TwoCol>
         </Section>
@@ -146,11 +200,10 @@ const Registration = () => {
               file={idProofFile}
               onChange={(e) => handleFileUpload(e, setIdProofFile)}
               accept="image/*"
-              capture="environment" // 👈 back camera
+              capture="environment"
               placeholder="JPG, PNG or PDF, max 5MB"
               inputId="id-proof"
             />
-
           </div>
         </Section>
 
@@ -166,11 +219,10 @@ const Registration = () => {
             file={visitorPhoto}
             onChange={(e) => handleFileUpload(e, setVisitorPhoto)}
             accept="image/*"
-            capture="user" // 👈 front camera
+            capture="user"
             placeholder="JPG or PNG, max 5MB"
             inputId="visitor-photo"
           />
-
         </Section>
       </form>
 
@@ -199,7 +251,3 @@ const Registration = () => {
 };
 
 export default Registration;
-
-
-
-

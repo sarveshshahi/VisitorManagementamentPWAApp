@@ -39,6 +39,6 @@ export default defineConfig({
     },
   },
   server: {
-    allowedHosts: ['pcdome.loca.lt'], 
+    allowedHosts: ['aman.loca.lt'], 
   },
 })
