@@ -3,6 +3,9 @@ import { Printer, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useReactToPrint } from 'react-to-print';
 import { useLocation, useNavigate } from 'react-router-dom';
+import Header from '../components/layout/Header';
+import { ActionFooter } from '../components/layout/Footer';
+import { Heading, Text } from '../components/ui/typography';
 
 const VisitorPass = () => {
   const passRef = useRef();
@@ -27,20 +30,11 @@ const VisitorPass = () => {
       className="w-full sm:w-96"
       style={{ fontFamily: 'Inter, Noto Sans, sans-serif' }}
     >
-      {/* Header */}
-      <div className="sticky top-0 bg-white z-10 border-b">
-        <div className="flex items-center p-3 justify-between">
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            className="text-[#121416]"
-            onClick={() => navigate(-1)}
-          >
-            <ArrowLeft className="w-5 h-5" />
-          </Button>
-          <h2 className="text-[#121416] text-md font-bold leading-tight flex-1 text-center pr-12">
-            Visitor Pass
-          </h2>
+      <Header 
+        title="Visitor Pass"
+        showBackButton={true}
+        onBackClick={() => navigate(-1)}
+        rightContent={
           <Button 
             variant="ghost" 
             size="icon" 
@@ -49,8 +43,8 @@ const VisitorPass = () => {
           >
             <Printer className="w-5 h-5" />
           </Button>
-        </div>
-      </div>
+        }
+      />
 
       {/* Pass Content */}
       <div ref={passRef} className="flex-1 overflow-y-auto px-4 py-6 bg-gradient-to-b from-blue-50 to-white">
@@ -105,19 +99,10 @@ const VisitorPass = () => {
         </div>
       </div>
 
-      {/* Footer */}
-      {/* Footer */}
-<div className="fixed bottom-0 left-0 w-full bg-white border-t">
-  <div className="max-w-md mx-auto px-4 py-2">
-    <Button 
-      onClick={handlePrint}
-      className="w-full h-10 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold"
-    >
-      <Printer className="w-5 h-5 mr-2" />
-      Print Visitor Pass
-    </Button>
-  </div>
-</div>
+      <ActionFooter 
+        actionText="Print Visitor Pass"
+        onActionClick={handlePrint}
+      />
 
     </div>
   );

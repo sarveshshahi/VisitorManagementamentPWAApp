@@ -2,6 +2,9 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import Header from '../components/layout/Header';
+import { ActionFooter } from '../components/layout/Footer';
+import { Heading, Text } from '../components/ui/typography';
 
 const VisitorRegistrationSummary = () => {
   const navigater = useNavigate();
@@ -10,21 +13,11 @@ const VisitorRegistrationSummary = () => {
   console.log("Visitor Data:", visitor);
 
   return (
-    <div 
-      className="w-full sm:w-96"
-      style={{ fontFamily: 'Inter, Noto Sans, sans-serif' }}
-    >
-      {/* Header */}
-      <div className="sticky top-0 bg-white z-10 border-b">
-        <div className="flex items-center p-3 justify-between">
-          <Button variant="ghost" size="icon" className="text-[#121416]">
-            <ArrowLeft className="w-5 h-5" />
-          </Button>
-          <h2 className="text-[#121416] text-md font-bold leading-tight flex-1 text-center pr-12">
-            Visitor Registration Summary
-          </h2>
-        </div>
-      </div>
+    <div className="w-full sm:w-96">
+      <Header 
+        title="Visitor Registration Summary"
+        showBackButton={true}
+      />
 
       {/* Main Content */}
       <div className="flex-1 overflow-y-auto">
@@ -90,17 +83,10 @@ const VisitorRegistrationSummary = () => {
         </div>
       </div>
 
-      {/* Footer Button */}
-      <div className="sticky bottom-0 bg-white border-t">
-        <div className="px-4 py-2">
-          <Button 
-            className="w-full h-8 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold"
-            onClick={() => navigater('/visitorPass', { state: { visitor } })}
-          >
-            Generate Pass
-          </Button>
-        </div>
-      </div>
+      <ActionFooter 
+        actionText="Generate Pass"
+        onActionClick={() => navigater('/visitorPass', { state: { visitor } })}
+      />
     </div>
   );
 };

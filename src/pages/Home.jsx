@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
+import DownloadAppModal from '../components/DownloadAppModal';
+import ResetModalButton from '../components/ResetModalButton';
 import { Button } from '@/components/ui/button';
+import Header from '../components/layout/Header';
+import { ActionFooter } from '../components/layout/Footer';
+import { Heading, Text } from '../components/ui/typography';
 import { 
   UserPlus, 
   UserCheck, 
@@ -46,13 +51,19 @@ const Home = () => {
 
   return (
     <div className="w-full sm:w-96">
+      <DownloadAppModal />
+      <ResetModalButton />
+      <Header 
+        title="Select an Option"
+        showBackButton={true}
+      />
       <div className="p-6">
-        <h2 className="text-xl font-bold text-center text-gray-800 mb-2">
+        <Heading size="h2" className="text-center mb-2">
           Please select an option to proceed
-        </h2>
-        <p className="text-sm text-black-500 text-center mb-6">
+        </Heading>
+        <Text size="sm" className="text-center mb-6">
           Choose the action you'd like to perform
-        </p>
+        </Text>
         
         <div className="space-y-4">
           {options.map((option) => (
@@ -79,15 +90,11 @@ const Home = () => {
           ))}
         </div>
         
-        <div className="mt-6 flex justify-center">
-          <Button 
-            className="w-full p-3 h-12 rounded-xl font-bold text-lg bg-blue-600"
-            disabled={!selectedOption}
-            onClick={handleContinue}
-          >
-            Continue
-          </Button>
-        </div>
+        <ActionFooter 
+          actionText="Continue"
+          disableAction={!selectedOption}
+          onActionClick={handleContinue}
+        />
       </div>
     </div>
   );

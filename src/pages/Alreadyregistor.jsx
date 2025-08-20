@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import axios from "axios";
 import apiClient from "../services/ApiClient";
+import Header from "../components/layout/Header";
+import { ActionFooter } from "../components/layout/Footer";
+import { Heading, Text } from "../components/ui/typography";
 
 export default function Alreadyregistor() {
   const navigater = useNavigate();
@@ -27,19 +30,15 @@ export default function Alreadyregistor() {
   };
 
   return (
-    <div className="relative flex min-h-screen flex-col bg-white p-4" style={{ fontFamily: `Inter, "Noto Sans", sans-serif` }}>
-      <div className="flex items-center bg-white pb-2 justify-between">
-        <div className="text-[#111811] flex items-center">
-          <ArrowLeft size={24} />
-        </div>
-        <h2 className="text-[#111811] text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">
-          Visitor Check-out
-        </h2>
-      </div>
+    <div className="relative flex min-h-screen flex-col bg-white p-4">
+      <Header 
+        title="Visitor Check-out"
+        showBackButton={true}
+      />
 
       <div className="flex max-w-[480px] flex-wrap items-end gap-4 py-3">
         <label className="flex flex-col min-w-40 flex-1">
-          <p className="text-[#111811] text-base font-medium leading-normal pb-1">Email/Mobile</p>
+          <Text size="base" weight="medium" className="pb-1">Email/Mobile</Text>
           <Input
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
@@ -49,11 +48,10 @@ export default function Alreadyregistor() {
         </label>
       </div>
 
-      <div className="flex justify-center py-3">
-        <button className="w-24 h-10 bg-blue-600 text-white rounded-lg font-bold text-sm" onClick={handleCheck}>
-          Check
-        </button>
-      </div>
+      <ActionFooter 
+        actionText="Check"
+        onActionClick={handleCheck}
+      />
     </div>
   );
 }

@@ -14,6 +14,9 @@ import {
 import { Button } from '@/components/ui/button';
 import { FormInput, FormSelect, Section, TwoCol, UploadBox } from '../components/fieldscomponents/filedscomponents';
 import apiClient from '../services/ApiClient';
+import Header from '../components/layout/Header';
+import { StandardFooter } from '../components/layout/Footer';
+import { Heading, Text } from '../components/ui/typography';
 
 const Registration = () => {
   const [formData, setFormData] = useState({
@@ -133,17 +136,10 @@ const Registration = () => {
   return (
     <div className="w-full">
       {/* Header */}
-      <div className="sticky top-0 bg-white border-b z-10">
-        <div className="flex items-center justify-between p-2">
-          <button className="text-[#111518] flex size-12 items-center justify-center rounded-full hover:bg-gray-100">
-            <ArrowLeft className="w-6 h-6" />
-          </button>
-          <h2 className="text-[#111518] text-base font-bold leading-tight flex-1 text-center">
-            Register New Visitor
-          </h2>
-          <div className="size-10" />
-        </div>
-      </div>
+      <Header 
+        title="Register New Visitor"
+        showBackButton={true}
+      />
 
       {/* Form */}
       <form
@@ -227,25 +223,13 @@ const Registration = () => {
       </form>
 
       {/* Footer */}
-      <div className="fixed bottom-0 left-0 w-full bg-white border-t p-4">
-        <div className="flex flex-col sm:flex-row gap-3 justify-between">
-          <Button
-            type="button"
-            onClick={handleCancel}
-            variant="outline"
-            className="h-8 text-sm font-semibold rounded-full bg-gray-100 text-[#111518] hover:bg-gray-200"
-          >
-            Cancel
-          </Button>
-          <Button
-            type="submit"
-            form="visitor-form"
-            className="h-8 text-sm font-semibold rounded-full bg-blue-600 text-white hover:bg-blue-700"
-          >
-            Submit & Generate Pass
-          </Button>
-        </div>
-      </div>
+      <StandardFooter
+        onPrimaryClick={() => document.getElementById('visitor-form').requestSubmit()}
+        primaryText="Submit & Generate Pass"
+        onSecondaryClick={handleCancel}
+        secondaryText="Cancel"
+        sticky={true}
+      />
     </div>
   );
 };

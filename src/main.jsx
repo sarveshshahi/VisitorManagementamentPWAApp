@@ -13,7 +13,7 @@ import Alreadyregistor from './pages/Alreadyregistor.jsx'
 
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+ 
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
@@ -25,5 +25,5 @@ createRoot(document.getElementById('root')).render(
           <Route path="/alreadyregistor" element={<Alreadyregistor />} />
       </Routes>
     </BrowserRouter>
-  </StrictMode>
+  
 )

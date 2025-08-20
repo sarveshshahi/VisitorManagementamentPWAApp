@@ -3,8 +3,13 @@ import React, { useState } from 'react';
 import { ArrowLeft, Search, User, Clock, Calendar, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import Header from '../components/layout/Header';
+import { ActionFooter } from '../components/layout/Footer';
+import { Heading, Text } from '../components/ui/typography';
+import { useNavigate } from 'react-router-dom';
 
 const VisitorCheckout = () => {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [visitorData, setVisitorData] = useState(null);
   const [isCheckedOut, setIsCheckedOut] = useState(false);
@@ -61,21 +66,13 @@ const VisitorCheckout = () => {
 
   return (
     <div className="w-full sm:w-96">
-      {/* Header */}
-      <div className="sticky top-0 bg-white border-b z-10">
-        <div className="flex items-center justify-between p-4">
-          <button className="text-black flex size-12 items-center justify-center rounded-full hover:bg-gray-100">
-            <ArrowLeft className="w-6 h-6" />
-          </button>
-          <h2 className="text-black text-lg font-bold leading-tight flex-1 text-center">
-            Visitor Check-out
-          </h2>
-          <div className="size-12" /> {/* Spacer for alignment */}
-        </div>
-      </div>
+      <Header 
+        title="Visitor Check-out"
+        showBackButton={true}
+      />
 
       {/* Main Content */}
-      <div className="p-6 pb-2 max-h-[80vh] overflow-y-auto">
+      <div className="p-6 pb-20 max-h-[80vh] overflow-y-auto">
         {/* Search Section */}
         <div className="mb-6">
           <div className="flex items-center gap-2 mb-4">
@@ -97,8 +94,8 @@ const VisitorCheckout = () => {
           </div>
           
           <Button 
+            className="w-full h-10 rounded-xl font-semibold text-base bg-blue-600 hover:bg-blue-700 mt-4"
             onClick={handleSearch}
-            className="mt-4 w-full h-11 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg"
           >
             Search Visitor
           </Button>
@@ -171,12 +168,7 @@ const VisitorCheckout = () => {
                 </div>
               </div>
               
-              <Button 
-                onClick={handleCheckout}
-                className="w-full h-12 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-bold"
-              >
-                Check-out Visitor
-              </Button>
+              {/* Removed checkout button from here as it will be in the footer */}
             </div>
           </div>
         )}
@@ -229,6 +221,14 @@ const VisitorCheckout = () => {
           </div>
         )}
       </div>
+      
+      {/* Footer */}
+      {visitorData && !isCheckedOut && (
+        <ActionFooter 
+          actionText="Check-out Visitor"
+          onActionClick={handleCheckout}
+        />
+      )}
     </div>
   );
 };
